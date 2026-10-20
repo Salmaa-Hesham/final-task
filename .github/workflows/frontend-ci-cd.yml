@@ -79,15 +79,8 @@ jobs:
 
       - name: "Invalidate CloudFront Cache"
         run: |
-          echo "Finding CloudFront distribution for domain ${{ env.DOMAIN_NAME }}..."
           CF_DIST_ID=$(aws cloudfront list-distributions \
             --query "DistributionList.Items[?Aliases.Items!=null && contains(Aliases.Items, '${{ env.DOMAIN_NAME }}')].Id" \
             --output text)
+          aws cloudfront create-invalidation --distribution-id "${CF_DIST_ID}" --paths "/*"
 
-          if [ -z "${CF_DIST_ID}" ] || [ "${CF_DIST_ID}" = "None" ]; then
-            echo "CloudFront distribution alias not found yet; skipping invalidation."
-          else
-            echo "Invalidating CloudFront distribution ${CF_DIST_ID}..."
-            aws cloudfront create-invalidation --distribution-id "${CF_DIST_ID}" --paths "/*"
-            echo "Cache invalidation submitted successfully!"
-          fi
