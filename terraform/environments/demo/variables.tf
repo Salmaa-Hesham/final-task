@@ -99,6 +99,24 @@ variable "db_allocated_storage" {
   description = "Allocated storage in GB"
 }
 
+variable "enable_read_replica" {
+  type        = bool
+  default     = false
+  description = "Whether to create a read replica for the RDS database"
+}
+
+variable "replica_instance_class" {
+  type        = string
+  default     = null
+  description = "Instance class for the read replica"
+}
+
+variable "backup_retention_period" {
+  type        = number
+  default     = 1
+  description = "Backup retention period in days for the primary DB"
+}
+
 # --- ECS Fargate ---
 variable "container_image" {
   type        = string

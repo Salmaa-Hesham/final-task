@@ -32,3 +32,18 @@ output "db_password_secret_arn" {
   description = "The ARN of the Secrets Manager secret storing the database password"
   value       = aws_secretsmanager_secret.db_password.arn
 }
+
+output "replica_endpoint" {
+  description = "The database connection endpoint of the read replica (host:port)"
+  value       = try(aws_db_instance.replica[0].endpoint, null)
+}
+
+output "replica_host" {
+  description = "The database hostname (address) of the read replica"
+  value       = try(aws_db_instance.replica[0].address, null)
+}
+
+output "replica_arn" {
+  description = "The ARN of the read replica"
+  value       = try(aws_db_instance.replica[0].arn, null)
+}

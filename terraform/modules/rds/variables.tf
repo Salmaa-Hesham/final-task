@@ -37,3 +37,21 @@ variable "db_username" {
   type        = string
   description = "Master database username"
 }
+
+variable "enable_read_replica" {
+  type        = bool
+  default     = false
+  description = "Whether to create a read replica for the RDS database"
+}
+
+variable "replica_instance_class" {
+  type        = string
+  default     = null
+  description = "Instance class for the read replica (defaults to instance_class if null)"
+}
+
+variable "backup_retention_period" {
+  type        = number
+  default     = 1
+  description = "Backup retention period in days (must be >= 1 for read replica creation)"
+}

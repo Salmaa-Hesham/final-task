@@ -58,6 +58,10 @@ db_engine_version    = "16.15"
 db_instance_class    = "db.t4g.micro"
 db_allocated_storage = 20
 
+# --- RDS Read Replica ---
+enable_read_replica     = false # Set to true to spin up an asynchronous read replica in isolated subnet 1b
+backup_retention_period = 1
+
 # --- ECS Fargate Backend ---
 container_image        = "253650698585.dkr.ecr.us-east-1.amazonaws.com/realworld-backend:latest"
 container_port         = 8080
