@@ -55,3 +55,9 @@ variable "backup_retention_period" {
   default     = 1
   description = "Backup retention period in days (must be >= 1 for read replica creation)"
 }
+
+variable "replica_availability_zone" {
+  type        = string
+  default     = null
+  description = "Availability zone for the read replica (e.g. us-east-1b)"
+}

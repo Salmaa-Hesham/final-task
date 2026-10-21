@@ -47,17 +47,18 @@ module "alb" {
 module "rds" {
   source = "../../modules/rds"
 
-  prefix                  = var.prefix
-  isolated_db_subnet_ids  = module.vpc.isolated_db_subnet_ids
-  rds_security_group_id   = module.vpc.rds_security_group_id
-  db_name                 = var.db_name
-  db_username             = var.db_username
-  engine_version          = var.db_engine_version
-  instance_class          = var.db_instance_class
-  allocated_storage       = var.db_allocated_storage
-  enable_read_replica     = var.enable_read_replica
-  replica_instance_class  = var.replica_instance_class
-  backup_retention_period = var.backup_retention_period
+  prefix                    = var.prefix
+  isolated_db_subnet_ids    = module.vpc.isolated_db_subnet_ids
+  rds_security_group_id     = module.vpc.rds_security_group_id
+  db_name                   = var.db_name
+  db_username               = var.db_username
+  engine_version            = var.db_engine_version
+  instance_class            = var.db_instance_class
+  allocated_storage         = var.db_allocated_storage
+  enable_read_replica       = var.enable_read_replica
+  replica_instance_class    = var.replica_instance_class
+  replica_availability_zone = var.replica_availability_zone
+  backup_retention_period   = var.backup_retention_period
 }
 
 # ==========================================

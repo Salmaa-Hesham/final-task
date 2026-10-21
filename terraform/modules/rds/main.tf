@@ -68,6 +68,7 @@ resource "aws_db_instance" "replica" {
   identifier             = "${var.prefix}-postgres-replica"
   replicate_source_db    = aws_db_instance.db.identifier
   instance_class         = var.replica_instance_class != null ? var.replica_instance_class : var.instance_class
+  availability_zone      = var.replica_availability_zone
   storage_type           = "gp3"
   vpc_security_group_ids = [var.rds_security_group_id]
   publicly_accessible    = false

@@ -117,6 +117,12 @@ variable "backup_retention_period" {
   description = "Backup retention period in days for the primary DB"
 }
 
+variable "replica_availability_zone" {
+  type        = string
+  default     = "us-east-1b"
+  description = "Availability zone for the read replica"
+}
+
 # --- ECS Fargate ---
 variable "container_image" {
   type        = string
