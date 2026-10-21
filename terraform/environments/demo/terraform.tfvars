@@ -59,7 +59,7 @@ db_instance_class    = "db.t4g.micro"
 db_allocated_storage = 20
 
 # --- RDS Read Replica ---
-enable_read_replica       = true
+enable_read_replica       = false # Step 1: Allow primary DB to activate automated backups first
 replica_availability_zone = "us-east-1b"
 backup_retention_period   = 1
 
