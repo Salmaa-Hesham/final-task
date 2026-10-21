@@ -2,7 +2,7 @@
 # 1. S3 BUCKET (Private Static Hosting)
 # ==========================================
 resource "aws_s3_bucket" "frontend" {
-  bucket        = var.bucket_name
+  bucket = var.bucket_name
   tags = {
     Name = "${var.prefix}-frontend-bucket"
   }
