@@ -54,9 +54,6 @@ resource "aws_db_instance" "db" {
 
   backup_retention_period = var.enable_read_replica ? max(var.backup_retention_period, 1) : var.backup_retention_period
 
-  skip_final_snapshot = true
-  deletion_protection = false
-
   tags = {
     Name = "${var.prefix}-postgres"
   }
@@ -74,8 +71,6 @@ resource "aws_db_instance" "replica" {
   storage_type           = "gp3"
   vpc_security_group_ids = [var.rds_security_group_id]
   publicly_accessible    = false
-  skip_final_snapshot    = true
-  deletion_protection    = false
 
   tags = {
     Name = "${var.prefix}-postgres-replica"

@@ -74,9 +74,6 @@ resource "aws_nat_gateway" "nat_gateway" {
   tags = {
     Name = "${var.prefix}-nat-gateway"
   }
-
-  # To ensure proper ordering, it is recommended to add an explicit dependency
-  # on the Internet Gateway for the VPC.
   depends_on = [aws_internet_gateway.gw]
 }
 
@@ -117,7 +114,6 @@ resource "aws_route_table_association" "private_app" {
 
 resource "aws_route_table" "isolated_db" {
   vpc_id = aws_vpc.vpc.id
-  # No external routes! Keeps the database strictly isolated.
   tags = {
     Name = "${var.prefix}-isolated-db-rt"
   }

@@ -3,7 +3,6 @@
 # ==========================================
 resource "aws_s3_bucket" "frontend" {
   bucket        = var.bucket_name
-  force_destroy = true
   tags = {
     Name = "${var.prefix}-frontend-bucket"
   }
@@ -31,7 +30,6 @@ resource "aws_cloudfront_origin_access_control" "oac" {
 # ==========================================
 resource "aws_cloudfront_distribution" "frontend" {
   enabled             = true
-  is_ipv6_enabled     = true
   default_root_object = var.default_root_object
   aliases             = [var.domain_name]
   origin {
